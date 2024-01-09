@@ -5,7 +5,8 @@
 //  Created by shintaro.ishimine on 2024/01/10.
 //
 
-import Foundation
+import IOKit.pwr_mgt
 
-print("Hello, World!")
-
+let powerManagement = IOPMFindPowerManagement(kIOMainPortDefault)
+let result = IOPMSleepSystem(powerManagement)
+if result == kIOReturnSuccess { IOServiceClose(powerManagement) }
